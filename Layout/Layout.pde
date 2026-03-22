@@ -25,8 +25,7 @@ void drawGrid(int numAges, int numCountries) {
     float y = i * ySpacing;
     line(0, y, width, y);
   }
-
+//spacing 
 
 }
   
-}
