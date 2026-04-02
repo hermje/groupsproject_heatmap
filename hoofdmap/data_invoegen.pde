@@ -2,8 +2,7 @@ Table exelBestand;
 int aantalLanden;           
 float[][] dataMatrix;    // de eerste [] staat voor de Rij (land) en de tweede [] voor de kolom (Man, Vrouw, trans of Totaal)
 
-void setup() {
-  size(1000, 1000); 
+float[][] loaddata() {
 
   exelBestand = loadTable("data.csv", "header"); // dit is om de csv tabel(exel) in te laden, en met header wordt bedoeld dat de eerste regel niet mee moet worden gebruikt in de berekeningen, maar die moet worden gebruik voor de titels 
 
@@ -27,6 +26,8 @@ void setup() {
     dataMatrix[i][2] = rij.getFloat("Transgender"); // kolom totaal transgender
     dataMatrix[i][3] = rij.getFloat("Totaal"); // Kolom Totaal
     
+
     //
   }
+  return dataMatrix;
 }

@@ -1,14 +1,11 @@
-void setup() {
-  size(1000, 1000);
-  background(255);
-}
 
 float margin = 100; // Margin for labels and spacing
-
+float[][] matrix; 
 void setup() {
   size(1000, 1000);
   background(255);
-}
+  float[][] matrix = loaddata();
+  }
 
 void draw() {
   background(255);
@@ -45,8 +42,6 @@ void drawGrid(int numAges, int numCountries) {
     float y = margin + i * ySpacing;
     line(margin, y, width - margin, y);
   } 
-  
-
 
   }
   
