@@ -1,4 +1,12 @@
 
+<<<<<<< HEAD
 
 
 
+=======
+wijziging
+
+void setup () {
+    size(500, 500)
+}
+>>>>>>> 96c65a18439c98ebaa2299a62b6c76c0380c7b16

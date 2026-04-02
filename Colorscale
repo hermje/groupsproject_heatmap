@@ -9,7 +9,7 @@ void draw(){
     int x = width heatmap + 20;     // de rechthoek staat dan rechts van de heatmap met 20 tussen de heatmap en de rechthoek
     int y = hight heatmap/3;        // de rechthoek staat dan op ongeveer 1/3e van de hoogte van de heatmap
     int w = 20;
-    int h = 130;
+    int h = 140;
 
   //--> variabelen width heatmap en hight heatmap nog benoemen
 
@@ -17,25 +17,30 @@ void draw(){
 
     for(int i=0; i<h; i++){
       float inter = map(i,0,h,0,1);
-      color c = lerpColor(color(255,255,0),color(255,0,0),inter);
+      color c = lerpColor(color(255,255,0),color(255,0,0),inter); //lerp zorgt voor kleurenovergang
       stroke(c);
       line(x,y+i,x+w,y+i);
     }
 
     fill(0);
     textSize(12);
-                       //x = int x + 3?
-                       //y = int y + 10? (want int h = 130)
-    text("<20",x,y);
-    text("50",x,y);
-    text("100",x,y);
-    text("150",x,y);
-    text("200",x,y);
-    text("250",x,y);
-    text("300",x,y);
-    text("350",x,y);
-    text("400",x,y);
-    text("500",x,y);
-    text("600",x,y);
+                       x = int x + int w + 3?
+                       y = int y + // 0-10-20-30-40-50-60-70-80-90-100-110-120-130-140? //(want int h = 130)
+
     text(">700",x,y);
+    text("650",x,y);
+    text("600",x,y);
+    text("550",x,y);
+    text("500",x,y);
+    text("450",x,y);
+    text("400",x,y);
+    text("350",x,y);
+    text("300",x,y);
+    text("250",x,y);
+    text("200",x,y);
+    text("150",x,y);
+    text("100",x,y);
+    text("50",x,y);
+    text("<20",x,y);
+
 }
