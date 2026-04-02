@@ -1,8 +1,0 @@
-void setup () {
-    size(500, 500)
-}
-
-void draw () {
-    background(255) 
-    fill(0)
-    text("Hello, World!", 50, 50)}
