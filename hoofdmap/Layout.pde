@@ -1,16 +1,8 @@
-void setup() {
-  size(1000, 1000);
-  background(255);
-}
+
 
 float margin = 100; // Margin for labels and spacing
 
-void setup() {
-  size(1000, 1000);
-  background(255);
-}
-
-void draw() {
+void tekenHeatmapUI() { //@amberverberck-ctrl ik heb even uw draw functie hier weggehaald en in de hoofdmap gezet en uw code hier omvat in een functie die we dan in de draw kunnen oproepen 
   background(255);
   drawGrid(7, 30);  // 7 ages on X-axis, 30 countries on Y-axis
   fill(0); // Black text
@@ -24,6 +16,9 @@ void draw() {
   noFill();
   strokeWeight(2);
   rect(920, 350, 40, 300); // legend box
+fill(255,0,0); // red for high prevalence
+  rect(100,100,115,25); // example cell for legend, elke cel heeft een breedte van 115 en een hoogte van 25
+  //
 }
 
 void drawGrid(int numAges, int numCountries) {
@@ -45,6 +40,7 @@ void drawGrid(int numAges, int numCountries) {
     float y = margin + i * ySpacing;
     line(margin, y, width - margin, y);
   } 
+  
   
 
 
