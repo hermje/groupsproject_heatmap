@@ -57,7 +57,9 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
 
     if (isHover) {
       selectedPoint = this;
-      fill(#556B2F);
+      noFill();
+      stroke(#556B2F);
+      strokeWeight(2);
       rect(sx, sy, cellWidth, cellHeight);
     }
   }
