@@ -1,14 +1,52 @@
 ArrayList<dataPunten> dataPunt = new ArrayList<dataPunten>(); //Hierin concretiseer je het type data dat dataPunt is (zoals float, int,...)
+
 float aantalRijen = 30;
-float aantalKolommen = 3;
+float aantalKolommen = 7;
 float totaalAantalPunten = aantalRijen * aantalKolommen;
+
+
 float gridMargin = 100;
 float gridCellWidth = (1000 - 2 * gridMargin) / 7.0;
 float gridCellHeight = (1000 - 2 * gridMargin) / 30.0;
 // 1 cel rechts + 1 cel naar beneden vrijhouden voor labels
 float gridSpacerX = gridMargin + gridCellWidth;
 float gridSpacerY = gridMargin + gridCellHeight;
+
+
 dataPunten selectedPoint = null;
+
+// Variabelen voor de informatiebalk
+float InfoBalkAfstandTotEindeGrid = 100;
+float infoBalkX;
+float infoBalkY = 100;
+float infoBalkWidth = 300;
+float infoBalkHeight = 500;
+float informatieSpacer = 10;
+void updateInfoBalkPositie() { //functie die de positie van de informatiebalk aanpast op basis van de breedte van de grid, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
+  infoBalkX = getGridEndX() + InfoBalkAfstandTotEindeGrid;
+}
+
+
+
+
+void lijnObjectenUitMetGrid() { //AI: functie die objecten en grid automatisch alligneerd om verwerking makkelijker te maken 
+  gridMargin = margin;
+  gridCellWidth = (getGridEndX() - gridMargin) / aantalKolommen;
+  gridCellHeight = (height - 2 * gridMargin) / aantalRijen;
+  gridSpacerX = gridMargin;
+  gridSpacerY = gridMargin;
+
+  for (int i = 0; i < dataPunt.size(); i++) {
+    dataPunten punt = dataPunt.get(i);
+    int rij = i / (int)aantalKolommen;
+    int kolom = i % (int)aantalKolommen;
+
+    punt.x = kolom * gridCellWidth;
+    punt.y = rij * gridCellHeight;
+    punt.cellWidth = gridCellWidth;
+    punt.cellHeight = gridCellHeight;
+  }
+}
 
 class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigenschappen van een datapunt kunnen bundelen in 1 object, en we kunnen ook functies toevoegen aan deze class die specifiek zijn voor deze data punten, zoals het weergeven van de waarde of het berekenen van de kleur op basis van de waarde.
   float x;
@@ -16,9 +54,15 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   float cellWidth = gridCellWidth;
   float cellHeight = gridCellHeight;
 
-
+//EIGENSCHAPPEN PER OBJECT 
   float indexNummer;
-  float waarde;
+  float waardeAgeSub15;
+  float waardeAge15to24;
+  float waardeAge25to49;
+  float waardeAge50plus;
+  float waardeTotaal;
+
+  String geslacht;
   String landNaam;
 
  
@@ -30,9 +74,13 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     this.cellWidth = cellWidth;
     this.cellHeight = cellHeight;
     this.indexNummer = indexNummer;
-    this.waarde = 0;
     this.landNaam = "Onbekend";
-
+    this.geslacht = "Onbekend";
+    this.waardeAgeSub15 = 0;
+    this.waardeAge15to24 = 0;
+    this.waardeAge25to49 = 0;
+    this.waardeAge50plus = 0;
+    this.waardeTotaal = 0;
   }
 
   void dataPuntenAanmaken (){ //functie die de datapunten aanmaak, in dit geval 90 datapunten, 30 landen x 3 categorieen
@@ -50,13 +98,13 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     rect(x + gridSpacerX, y + gridSpacerY, cellWidth, cellHeight);
   }
 
-  void select() {
+  void select() { //functie die visueel aantoond welke datapunt wordt geselecteerd (tijdelijk), later zal deze functie enkel nog worden gebruikt voor de selected.point = this om de interactieve tabel op te bouwen
     float sx = this.x + gridSpacerX;
     float sy = this.y + gridSpacerY;
     boolean isHover = mouseX >= sx && mouseX < sx + cellWidth && mouseY >= sy && mouseY < sy + cellHeight;
 
     if (isHover) {
-      selectedPoint = this;
+      selectedPoint = this; //voornaamste voordeel van deze functie, hiermee wordt het geselecteerde datapunt opgeslagen in de variabele selectedPoint, zodat we deze kunnen gebruiken om de interactieve tabel te tonen.
       noFill();
       stroke(#556B2F);
       strokeWeight(2);
@@ -64,3 +112,31 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     }
   }
 }
+
+void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float infoBalkHeight) {
+// INFORMATIEBALK RECHTS NAAST HEATMAP
+    float titelTekstGrootte = 40;
+    float inhoudTekstGrootte = 20;
+    float titelY = infoBalkY + informatieSpacer;
+  float inhoudStartX = infoBalkX + informatieSpacer;
+  float inhoudStartY = titelY + titelTekstGrootte + informatieSpacer;
+  float regelHoogte = inhoudTekstGrootte + informatieSpacer;
+    float huidigeRegelY = inhoudStartY;
+
+    rect(infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight);
+    fill(0);
+    textSize(titelTekstGrootte);
+    textAlign(CENTER, TOP);
+    text("Gegevens", infoBalkX + infoBalkWidth / 2, titelY);
+
+    textSize(inhoudTekstGrootte); //INFORMATIE IN INFORMATIEBALK
+    textAlign(LEFT, TOP);
+    if (selectedPoint != null) {
+      text("Indexnummer: " + str(selectedPoint.indexNummer), inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte; // Verhoog Y-positie voor volgende regel, telkens herhalen na tekst om regels netjes onder elkaar te plaatsen
+
+      } else {
+      text("Hover over een blokje", inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+    }
+  }

@@ -3,7 +3,7 @@
 // misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? 
 
 void setup() {
-	size(1000, 1000);
+	size(1500, 1000);
 	laadData();
      drawGrid(7, 30);
     tekenHeatmapUI();
@@ -12,21 +12,22 @@ void setup() {
 	dataPunt.clear();
 	dataPunten puntenBuilder = new dataPunten(0, 0, 115, 25, 0);
 	puntenBuilder.dataPuntenAanmaken();
+  lijnObjectenUitMetGrid();
+  updateInfoBalkPositie();
 }
 
 void draw(){
   selectedPoint = null;
-   
-   
-    
-
-
+  lijnObjectenUitMetGrid();
+  updateInfoBalkPositie();
 //CLASS FUNCTIES
     for(int r =0; r<aantalRijen; r++) {
     for(int c=0; c<aantalKolommen;c++) {
       int index = r * (int)aantalKolommen + c; //CENTRAAL: GAAT ALLE INDEXEN AF!!! 
-      dataPunt.get(index).display();
+      dataPunt.get(index).display(); //tijdelijk om te kijken of de interactie werkt, later zal deze functie weggehaald worden
       dataPunt.get(index).select(); //Indien het kleuren van de vakjes tijdens het werken aan de code vervelend wordt, kan deze functie tijdelijk worden uitgecommentarieerd
     }
   }
+
+  infoBalk (infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight); //functie die informatiebalk weergeeft 
 }
