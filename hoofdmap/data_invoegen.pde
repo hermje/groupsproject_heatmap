@@ -27,7 +27,9 @@ void laadData() {
     dataMatrix[i][2] = rij.getFloat("Transgender"); // kolom totaal transgender
     dataMatrix[i][3] = rij.getFloat("Totaal"); // Kolom Totaal
     
+
     //
 
   }
+  return dataMatrix;
 }
