@@ -12,11 +12,14 @@ void setup() {
 	dataPunt.clear();
 	dataPunten puntenBuilder = new dataPunten(0, 0, 115, 25, 0);
 	puntenBuilder.dataPuntenAanmaken();
+  dataKoppelenAanObjecten();
   lijnObjectenUitMetGrid();
   updateInfoBalkPositie();
 }
 
 void draw(){
+  //frameRate(10); //tijdelijk om te kijken of de interactie werkt, later zal deze regel weggehaald worden
+  
   selectedPoint = null;
   lijnObjectenUitMetGrid();
   updateInfoBalkPositie();
