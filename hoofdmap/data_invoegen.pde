@@ -3,7 +3,7 @@ int aantalLanden;
 float[][] dataMatrix;    // de eerste [] staat voor de Rij (land) en de tweede [] voor de kolom (Man, Vrouw, trans of Totaal)
 
 
-void laadData() {
+float[][] laadData() {
 
   exelBestand = loadTable("data.csv", "header"); // dit is om de csv tabel(exel) in te laden, en met header wordt bedoeld dat de eerste regel niet mee moet worden gebruikt in de berekeningen, maar die moet worden gebruik voor de titels 
 

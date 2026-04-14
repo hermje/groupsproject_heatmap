@@ -1,6 +1,6 @@
 // Main sketch tab required by Processing: file name must match folder name.
 // Actual setup and data logic live in the other .pde tabs.
-// misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? 
+// misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? ja top
 
 void setup() {
 	size(1500, 1000);
