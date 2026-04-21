@@ -14,7 +14,7 @@ void tekenHeatmapUI() { //@amberverberck-ctrl ik heb even uw draw functie hier w
   textSize(20);
   textAlign(CENTER, CENTER);
   text("HIV Prevalence by Age and Country", getGridEndX() / 2, 30); // Title, hier zit getGridEndX() in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
-  text("Age", width / 2, height - 20); // Label for X-axis
+  text("Age", (margin + getGridEndX()) / 2, height - 20); // Label for X-axis, gecentreerd in het midden van de grid
   text("Country", 50, height / 2); // Label for Y-axis
 
   stroke(0); // Black border for legend
