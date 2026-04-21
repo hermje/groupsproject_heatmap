@@ -1,47 +1,36 @@
+// Main sketch tab required by Processing: file name must match folder name.
+// Actual setup and data logic live in the other .pde tabs.
+// misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? ja top
 
-float margin = 100; // Margin for labels and spacing
-float[][] matrix; 
 void setup() {
-  size(1000, 1000);
-  background(255);
-  float[][] matrix = loaddata();
-  }
+	size(1500, 1000);
+	laadData();
+     drawGrid(7, 30);
+    tekenHeatmapUI();
 
-void draw() {
-  background(255);
-  drawGrid(7, 30);  // 7 ages on X-axis, 30 countries on Y-axis
-  fill(0); // Black text
-  textSize(20);
-  textAlign(CENTER, CENTER);
-  text("HIV Prevalence by Age and Country", width / 2, 30); // Title
-  text("Age", width / 2, height - 20); // Label for X-axis
-  text("Country", 50, height / 2); // Label for Y-axis
-
-  stroke(0); // Black border for legend
-  noFill();
-  strokeWeight(2);
-  rect(920, 350, 40, 300); // legend box
+    //functies vanuit de class dataPunten, deze functies zijn nodig om de dataPunten aan te maken en in de arraylist te steken, en deze punten vervolgens te kunnen tonen op het scherm.
+	dataPunt.clear();
+	dataPunten puntenBuilder = new dataPunten(0, 0, 115, 25, 0);
+	puntenBuilder.dataPuntenAanmaken();
+  dataKoppelenAanObjecten();
+  lijnObjectenUitMetGrid();
+  updateInfoBalkPositie();
 }
 
-void drawGrid(int numAges, int numCountries) {
-  stroke(0);      // Black lines
-  strokeWeight(1); // Thin lines
+void draw(){
+  //frameRate(10); //tijdelijk om te kijken of de interactie werkt, later zal deze regel weggehaald worden
   
-  float xSpacing = (width - 2 * margin) / (float)numAges;
-  float ySpacing = (height - 2 * margin) / (float)numCountries;
-  // with of each cell
-  
-  // Draw vertical lines for ages (X-axis)
-  for (int i = 0; i <= numAges; i++) {
-    float x = margin + i * xSpacing;
-    line(x, margin, x, height - margin);
+  selectedPoint = null;
+  lijnObjectenUitMetGrid();
+  updateInfoBalkPositie();
+//CLASS FUNCTIES
+    for(int r =0; r<aantalRijen; r++) {
+    for(int c=0; c<aantalKolommen;c++) {
+      int index = r * (int)aantalKolommen + c; //CENTRAAL: GAAT ALLE INDEXEN AF!!! 
+      dataPunt.get(index).display(); //tijdelijk om te kijken of de interactie werkt, later zal deze functie weggehaald worden
+      dataPunt.get(index).select(); //Indien het kleuren van de vakjes tijdens het werken aan de code vervelend wordt, kan deze functie tijdelijk worden uitgecommentarieerd
+    }
   }
-  
-  // Draw horizontal lines for countries (Y-axis)
-  for (int i = 0; i <= numCountries; i++) {
-    float y = margin + i * ySpacing;
-    line(margin, y, width - margin, y);
-  } 
 
-  }
-  
+  infoBalk (infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight); //functie die informatiebalk weergeeft 
+}
