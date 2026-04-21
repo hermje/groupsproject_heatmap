@@ -12,8 +12,10 @@ void colorscale(){
 
   //--> variabelen width heatmap en hight heatmap nog benoemen
 
-    rect(x, y, w, h);
     stroke(0);
+    noFill();
+    strokeWeight(1);
+    rect(x, y, w, h);
 
     for(int i=0; i<h; i++){
       float inter = map(i,0,h,0,1);
