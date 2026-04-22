@@ -5,7 +5,7 @@
 
 void colorscale(){
 
-    int x = getGridEndX() + 20;     // de rechthoek staat dan rechts van de heatmap met 20 tussen de heatmap en de rechthoek
+    float x = getGridEndX() + 20;     // de rechthoek staat dan rechts van de heatmap met 20 tussen de heatmap en de rechthoek
     int y = 250 ;        // de rechthoek staat dan op ongeveer 1/3e van de hoogte van de heatmap
     int w = 40;
     int h = 300;
