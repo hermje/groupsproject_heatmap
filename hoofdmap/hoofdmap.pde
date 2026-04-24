@@ -15,6 +15,15 @@ void setup() {
   dataKoppelenAanObjecten();
   lijnObjectenUitMetGrid();
   updateInfoBalkPositie();
+
+  //functies voor het bepalen van het gemiddelde 
+  meanSub15();
+  mean15_19();
+  mean20_24();
+  mean25_29();
+  mean30_39();
+  mean40_49();
+  mean50_plus();
 }
 
 void draw(){
@@ -30,6 +39,7 @@ void draw(){
       int index = r * (int)aantalKolommen + c; //CENTRAAL: GAAT ALLE INDEXEN AF!!! 
       dataPunt.get(index).display(); //tijdelijk om te kijken of de interactie werkt, later zal deze functie weggehaald worden
       dataPunt.get(index).select(); //Indien het kleuren van de vakjes tijdens het werken aan de code vervelend wordt, kan deze functie tijdelijk worden uitgecommentarieerd
+      dataPunt.get(index).calculateDeviation(); //hier wordt de deviatie berekend voor elk datapunt, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
     }
   }
 

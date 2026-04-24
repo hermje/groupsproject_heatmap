@@ -53,6 +53,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   float waardeVrouw;
   float waardeTransgender;
   float waardeTotaal;
+  float deviatie;
   
 
  
@@ -102,6 +103,29 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
       strokeWeight(2);
       rect(sx, sy, cellWidth, cellHeight);
     }
+  }
+
+  void calculateDeviation() {
+    float meanValue = 0;
+
+    //onderstaande lijnen code checken in welke leeftijdscategorie het datapunt valt, en vervolgens het gemiddelde voor die leeftijdscategorie oproepen, zodat we de deviatie kunnen berekenen als het verschil tussen de waarde van het datapunt en het gemiddelde voor die leeftijdscategorie, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
+    if (leeftijdsCategorie.equals("15-19")) {
+      meanValue = mean15_19(); 
+    } else if (leeftijdsCategorie.equals("20-24")) {
+      meanValue = mean20_24();
+    } else if (leeftijdsCategorie.equals("25-29")) {
+      meanValue = mean25_29();
+    } else if (leeftijdsCategorie.equals("30-39")) {
+      meanValue = mean30_39() ;
+    } else if (leeftijdsCategorie.equals("40-49")) {
+      meanValue = mean40_49();
+    } else if (leeftijdsCategorie.equals("50+")) {
+      meanValue = mean50_plus();
+    } else if (leeftijdsCategorie.equals("<15")) {
+      meanValue = meanSub15();
+    }
+    
+    this.deviatie = waardeTotaal - meanValue; //hier wordt de deviatie berekend als het verschil tussen de waarde van het datapunt en het gemiddelde voor die leeftijdscategorie, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
   }
 }
 

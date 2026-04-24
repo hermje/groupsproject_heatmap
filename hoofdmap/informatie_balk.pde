@@ -39,7 +39,16 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
       huidigeRegelY += regelHoogte;
 
       text("Totaal: " + str(selectedPoint.waardeTotaal), inhoudStartX, huidigeRegelY);
+      if (selectedPoint.deviatie > 0) {
+        fill(196, 92, 92); // gedimd rood voor positieve deviatie
+      } else if (selectedPoint.deviatie < 0) {
+        fill(92, 156, 110); // gedimd groen voor negatieve deviatie
+      } else {
+        fill(140); // zachter grijs voor geen deviatie
+      }
+      text ("(dev:  " + nf(selectedPoint.deviatie, 0, 2) + ")", inhoudStartX + 120, huidigeRegelY);
       huidigeRegelY += regelHoogte;
+      fill (0); // zwart voor tekst
 
       text("Mannen: " + str(selectedPoint.waardeMan), inhoudStartX, huidigeRegelY);
       huidigeRegelY += regelHoogte;
