@@ -3,7 +3,7 @@ int aantalLanden;
 float[][] dataMatrix;    // de eerste [] staat voor de Rij (land) en de tweede [] voor de kolom (Man, Vrouw, trans of Totaal)
 
 
-float[][] laadData() {
+void laadData() {
 
   exelBestand = loadTable("data.csv", "header"); // dit is om de csv tabel(exel) in te laden, en met header wordt bedoeld dat de eerste regel niet mee moet worden gebruikt in de berekeningen, maar die moet worden gebruik voor de titels 
 
@@ -31,7 +31,6 @@ float[][] laadData() {
     //
 
   }
-  return dataMatrix;
 }
 
 void dataKoppelenAanObjecten (){
@@ -62,5 +61,45 @@ for(int j = 0; j < dataPunt.size(); j++) {
     dataPunt.get(j).leeftijdsCategorie = tempLeeftijdsCategorie;
   }
 }
+}
+
+//WAARDETOTAAL 
+for(int i = 0; i < exelBestand.getRowCount(); i++) {
+  float tempWaardeTotaal = exelBestand.getFloat(i, "Totaal"); // hier wordt de waarde van de "Totaal" kolom opgehaald uit het CSV bestand, op basis van de rij index i, deze waarde wordt opgeslagen in de variabele tempWaarde
+for(int j = 0; j < dataPunt.size(); j++) {
+  if (dataPunt.get(j).indexNummer == i) { //hier wordt gecontroleerd of de index van het dataPunten object overeenkomt met de rij index i van het CSV bestand, als dit het geval is, dan wordt de waarde gekoppeld aan het dataPunten object, zodat we deze later kunnen gebruiken in de display en select functies van de dataPunten class, en in de informatiebalk.
+    dataPunt.get(j).waardeTotaal = tempWaardeTotaal;
+  }
+}
+}
+
+//WAARDEMAN 
+for(int i = 0; i < exelBestand.getRowCount(); i++) {
+  float tempWaardeMan = exelBestand.getFloat(i, "Man");
+  for(int j = 0; j < dataPunt.size(); j++) {
+    if (dataPunt.get(j).indexNummer == i) {
+      dataPunt.get(j).waardeMan = tempWaardeMan;
+    }
+  }
+}
+
+//WAARDEVOUWN
+for(int i = 0; i < exelBestand.getRowCount(); i++) {
+  float tempWaardeVrouw = exelBestand.getFloat(i, "Vrouw");
+  for(int j = 0; j < dataPunt.size(); j++) {
+    if (dataPunt.get(j).indexNummer == i) {
+      dataPunt.get(j).waardeVrouw = tempWaardeVrouw;
+    }
+  }
+}
+
+//WAARDETRANSGENDER
+for(int i = 0; i < exelBestand.getRowCount(); i++) {
+  float tempWaardeTransgender = exelBestand.getFloat(i, "Transgender");
+  for(int j = 0; j < dataPunt.size(); j++) {
+    if (dataPunt.get(j).indexNummer == i) {
+      dataPunt.get(j).waardeTransgender = tempWaardeTransgender;
+    }
+  }     
 }
 }
