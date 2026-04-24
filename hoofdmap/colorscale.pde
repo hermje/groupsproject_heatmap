@@ -1,5 +1,5 @@
 
-
+//
   //yellow: low --> (255,255,0)
   //red: high --> (255,0,0)
 
@@ -10,7 +10,7 @@ void colorscale(){
     int w = 40;
     int h = 300;
 
-  //--> variabelen width heatmap en hight heatmap nog benoemen
+     //--> variabelen width heatmap en hight heatmap nog benoemen
 
     stroke(0);
     noFill();
@@ -30,21 +30,7 @@ void colorscale(){
     float TextAfstandTotEindeGrid = 97;
     y = y + 20;
 
-    text(">750", TextAfstandTotEindeGrid, y);
-    text("700", TextAfstandTotEindeGrid, y + 20);
-    text("650", TextAfstandTotEindeGrid, y + 40);
-    text("600", TextAfstandTotEindeGrid, y + 60);
-    text("550", TextAfstandTotEindeGrid, y + 80);
-    text("500", TextAfstandTotEindeGrid, y + 100);
-    text("450", TextAfstandTotEindeGrid, y + 120);
-    text("400", TextAfstandTotEindeGrid, y + 140);
-    text("350", TextAfstandTotEindeGrid, y + 160);
-    text("300", TextAfstandTotEindeGrid, y + 180);
-    text("250", TextAfstandTotEindeGrid, y + 200);
-    text("200", TextAfstandTotEindeGrid, y + 220);
-    text("150", TextAfstandTotEindeGrid, y + 240);
-    text("100", TextAfstandTotEindeGrid, y + 260);
-    text("50", TextAfstandTotEindeGrid, y + 280);
-    text("<20", TextAfstandTotEindeGrid, y + 300);
+    text(">1350", TextAfstandTotEindeGrid, y);
+    text("0", TextAfstandTotEindeGrid, y + 300);
 
 }
