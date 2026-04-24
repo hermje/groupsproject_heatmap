@@ -3,10 +3,10 @@
 // misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? ja top
 
 void setup() {
-	size(1500, 1000);
+	size(1250, 750);
 	laadData();
      drawGrid(7, 30);
-    tekenHeatmapUI();
+    
 
     //functies vanuit de class dataPunten, deze functies zijn nodig om de dataPunten aan te maken en in de arraylist te steken, en deze punten vervolgens te kunnen tonen op het scherm.
 	dataPunt.clear();
@@ -21,6 +21,7 @@ void draw(){
   //frameRate(10); //tijdelijk om te kijken of de interactie werkt, later zal deze regel weggehaald worden
   
   selectedPoint = null;
+  tekenHeatmapUI();
   lijnObjectenUitMetGrid();
   updateInfoBalkPositie();
 //CLASS FUNCTIES

@@ -1,7 +1,7 @@
 
 
 float margin = 100; // Margin for labels and spacing
-float gridEndXFactor = 0.5; // factor gaande van 0 tot 1 die bepaalt waar het einde van de grid ligt, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
+float gridEndXFactor = 0.6; // factor gaande van 0 tot 1 die bepaalt waar het einde van de grid ligt, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
 
 float getGridEndX() { // Float om de X-positie van het einde van de grid te berekenen op basis van een factor van de totale breedte, zodat we flexibel kunnen zijn met de layout.
   return width * gridEndXFactor;
@@ -21,9 +21,7 @@ void tekenHeatmapUI() { //@amberverberck-ctrl ik heb even uw draw functie hier w
   noFill();
   strokeWeight(2);
   rect(getGridEndX() + 20, 350, 40, 300); // legend box
-fill(255,0,0); // red for high prevalence
-  rect(100,100,115,25); // example cell for legend, elke cel heeft een breedte van 115 en een hoogte van 25
-  //
+  
 }
 
 void drawGrid(int numAges, int numCountries) {

@@ -15,16 +15,7 @@ float gridSpacerY = gridMargin + gridCellHeight;
 
 dataPunten selectedPoint = null;
 
-// Variabelen voor de informatiebalk
-float InfoBalkAfstandTotEindeGrid = 100;
-float infoBalkX; 
-float infoBalkY = 100;
-float infoBalkWidth = 300;
-float infoBalkHeight = 500;
-float informatieSpacer = 10; // afstand tussen tekstregels in de informatiebalk
-void updateInfoBalkPositie() { //functie die de positie van de informatiebalk aanpast op basis van de breedte van de grid, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
-  infoBalkX = getGridEndX() + InfoBalkAfstandTotEindeGrid;
-}
+
 
 
 
@@ -114,48 +105,3 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   }
 }
 
-void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float infoBalkHeight) {
-// INFORMATIEBALK RECHTS NAAST HEATMAP
-    float titelTekstGrootte = 40;
-    float inhoudTekstGrootte = 20;
-    float titelY = infoBalkY + informatieSpacer;
-  float inhoudStartX = infoBalkX + informatieSpacer;
-  float inhoudStartY = titelY + titelTekstGrootte + informatieSpacer;
-  float regelHoogte = inhoudTekstGrootte + informatieSpacer;
-    float huidigeRegelY = inhoudStartY;
-
-    rect(infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight);
-    fill(0);
-    textSize(titelTekstGrootte);
-    textAlign(CENTER, TOP);
-    text("Gegevens", infoBalkX + infoBalkWidth / 2, titelY);
-
-    textSize(inhoudTekstGrootte); //INFORMATIE IN INFORMATIEBALK
-    textAlign(LEFT, TOP);
-    if (selectedPoint != null) {
-      text("Indexnummer: " + str(selectedPoint.indexNummer), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte; // Verhoog Y-positie voor volgende regel, telkens herhalen na tekst om regels netjes onder elkaar te plaatsen
-      
-      text("Land: " + selectedPoint.landNaam, inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      text("Leeftijdscategorie: " + selectedPoint.leeftijdsCategorie, inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      text("Totaal: " + str(selectedPoint.waardeTotaal), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      text("Mannen: " + str(selectedPoint.waardeMan), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      text("Vrouwen: " + str(selectedPoint.waardeVrouw), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      text("Transgender: " + str(selectedPoint.waardeTransgender), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-
-      } else {
-      text("Hover over een blokje", inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte;
-    }
-  }
