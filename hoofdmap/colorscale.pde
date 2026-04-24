@@ -5,16 +5,7 @@
 
 void colorscale(){
 
-    int x = getGridEndX() + 20;     // de rechthoek staat dan rechts van de heatmap met 20 tussen de heatmap en de rechthoek
-    int y = 250 ;        // de rechthoek staat dan op ongeveer 1/3e van de hoogte van de heatmap
-    int w = 40;
-    int h = 0;
-
-  //--> variabelen width heatmap en hight heatmap nog benoemen
-
-    rect(int x,int y,int w,int h);
-    stoke(0);
-
+    
     for(int i=0; i<h; i++){
       float inter = map(i,0,h,0,1);
       color c = lerpColor(color(255,0,0),color(255,255,0),inter); //lerp zorgt voor kleurenovergang
