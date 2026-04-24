@@ -23,20 +23,7 @@ void colorscale() {
   textSize(12);
   textAlign(LEFT, CENTER);
 
-  text(">750", textX, y);
-  text("700", textX, y + 20);
-  text("650", textX, y + 40);
-  text("600", textX, y + 60);
-  text("550", textX, y + 80);
-  text("500", textX, y + 100);
-  text("450", textX, y + 120);
-  text("400", textX, y + 140);
-  text("350", textX, y + 160);
-  text("300", textX, y + 180);
-  text("250", textX, y + 200);
-  text("200", textX, y + 220);
-  text("150", textX, y + 240);
-  text("100", textX, y + 260);
-  text("50", textX, y + 280);
-  text("<20", textX, y + 300);
+  text("1350", textX, y);
+  
+  text("0", textX, y + 300);
 }
