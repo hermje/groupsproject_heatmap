@@ -58,7 +58,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   float indexNummer;
   String landNaam;
   String leeftijdsCategorie; //string want deze kan verschillende vormen aannemen, zoals "15-24", "25-34", "35-49", "50+" of "Totaal"
-  float waaardeMan;
+  float waardeMan;
   float waardeVrouw;
   float waardeTransgender;
   float waardeTotaal;
@@ -78,7 +78,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     this.indexNummer = indexNummer;
     this.landNaam = "Onbekend";
     this.leeftijdsCategorie = "Onbekend";
-    this.waaardeMan = 0;
+    this.waardeMan = 0;
     this.waardeVrouw = 0;
     this.waardeTransgender = 0;
     this.waardeTotaal = 0;
@@ -140,6 +140,18 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
       huidigeRegelY += regelHoogte;
 
       text("Leeftijdscategorie: " + selectedPoint.leeftijdsCategorie, inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+
+      text("Totaal: " + str(selectedPoint.waardeTotaal), inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+
+      text("Mannen: " + str(selectedPoint.waardeMan), inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+
+      text("Vrouwen: " + str(selectedPoint.waardeVrouw), inhoudStartX, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+
+      text("Transgender: " + str(selectedPoint.waardeTransgender), inhoudStartX, huidigeRegelY);
       huidigeRegelY += regelHoogte;
 
       } else {
