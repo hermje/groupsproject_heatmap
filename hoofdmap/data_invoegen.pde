@@ -31,7 +31,7 @@ float[][] laadData() {
     //
 
   }
-  //return dataMatrix;
+  return dataMatrix;
 }
 
 void dataKoppelenAanObjecten (){

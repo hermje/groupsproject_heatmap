@@ -1,0 +1,30 @@
+color getColorForValue(float waarde) {
+
+  float minWaarde = 20;
+  float maxWaarde = 750;
+
+  // waarde omzetten naar schaal tussen 0 en 1
+  float inter = map(waarde, minWaarde, maxWaarde, 0, 1);
+
+  // zorgen dat het niet buiten de schaal gaat
+  inter = constrain(inter, 0, 1);
+
+  // zelfde kleuren als je legenda
+  return lerpColor(
+    color(255, 255, 0),   // geel = lage waarde
+    color(255, 0, 0),     // rood = hoge waarde
+    inter
+  );
+}
+
+for (int i = 0; i < objects.size(); i++) {
+
+  MijnObject obj = objects.get(i);
+
+  float waarde = obj.value;
+
+  fill(getColorForValue(waarde));
+  noStroke();
+
+  rect(obj.x, obj.y, cellWidth, cellHeight);
+}
