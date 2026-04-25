@@ -36,4 +36,3 @@ Sweden
 --> file voor inwoners aantal zoeken en programmeren dat de juiste 
 //dan nog herschalen naar getal tussen nul en één: float inter = map(waarde, minWaarde, maxWaarde, 0, 1);
     //maxwaarde = grootste waarde van gegevens
-//getalletjes naast kleurenschaal vervangen door "highest" en "lowest"
