@@ -34,5 +34,7 @@ void draw(){
 
   infoBalk (infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight); //functie die informatiebalk weergeeft 
 
-  //colorscale();
+  colorscale();
+  
+
 }
