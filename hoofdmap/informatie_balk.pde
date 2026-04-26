@@ -29,8 +29,8 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
     textSize(inhoudTekstGrootte); //INFORMATIE IN INFORMATIEBALK
     textAlign(LEFT, TOP);
     if (selectedPoint != null) {
-      text("Indexnummer: " + str(selectedPoint.indexNummer), inhoudStartX, huidigeRegelY);
-      huidigeRegelY += regelHoogte; // Verhoog Y-positie voor volgende regel, telkens herhalen na tekst om regels netjes onder elkaar te plaatsen
+      //text("Indexnummer: " + str(selectedPoint.indexNummer), inhoudStartX, huidigeRegelY);
+      //huidigeRegelY += regelHoogte; // Verhoog Y-positie voor volgende regel, telkens herhalen na tekst om regels netjes onder elkaar te plaatsen
       
       text("Land: " + selectedPoint.landNaam, inhoudStartX, huidigeRegelY);
       huidigeRegelY += regelHoogte;
@@ -39,6 +39,8 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
       huidigeRegelY += regelHoogte;
 
       text("Totaal: " + str(selectedPoint.waardeTotaal), inhoudStartX, huidigeRegelY);
+         huidigeRegelY += regelHoogte;
+
       if (selectedPoint.deviatie > 0) {
         fill(196, 92, 92); // gedimd rood voor positieve deviatie
       } else if (selectedPoint.deviatie < 0) {
@@ -46,17 +48,23 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
       } else {
         fill(140); // zachter grijs voor geen deviatie
       }
-      text ("(dev:  " + nf(selectedPoint.deviatie, 0, 2) + ")", inhoudStartX + 120, huidigeRegelY);
+      text ("absolute deviatie: " + nf(selectedPoint.deviatie, 0, 2) , inhoudStartX + 20, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
+      text ("Z-score: " + nf(selectedPoint.zScore, 0, 2), inhoudStartX + 20, huidigeRegelY);
+      huidigeRegelY += regelHoogte;
       huidigeRegelY += regelHoogte;
       fill (0); // zwart voor tekst
 
-      text("Mannen: " + str(selectedPoint.waardeMan), inhoudStartX, huidigeRegelY);
+text("Geslachtsverdeling:", inhoudStartX, huidigeRegelY);
+textSize(inhoudTekstGrootte - 4); // iets kleinere tekst voor subcategorie
+      huidigeRegelY += regelHoogte;
+      text("Mannen: " + str(selectedPoint.waardeMan), inhoudStartX + 20, huidigeRegelY);
       huidigeRegelY += regelHoogte;
 
-      text("Vrouwen: " + str(selectedPoint.waardeVrouw), inhoudStartX, huidigeRegelY);
+      text("Vrouwen: " + str(selectedPoint.waardeVrouw), inhoudStartX + 20, huidigeRegelY);
       huidigeRegelY += regelHoogte;
 
-      text("Transgender: " + str(selectedPoint.waardeTransgender), inhoudStartX, huidigeRegelY);
+      text("Transgender: " + str(selectedPoint.waardeTransgender), inhoudStartX + 20, huidigeRegelY);
       huidigeRegelY += regelHoogte;
 
       } else {

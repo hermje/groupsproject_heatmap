@@ -40,6 +40,7 @@ void draw(){
       dataPunt.get(index).display(); //tijdelijk om te kijken of de interactie werkt, later zal deze functie weggehaald worden
       dataPunt.get(index).select(); //Indien het kleuren van de vakjes tijdens het werken aan de code vervelend wordt, kan deze functie tijdelijk worden uitgecommentarieerd
       dataPunt.get(index).calculateDeviation(); //hier wordt de deviatie berekend voor elk datapunt, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
+      dataPunt.get(index).calculateZScore();
     }
   }
 
