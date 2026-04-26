@@ -28,7 +28,7 @@ void colorscale(){
     textSize(12);
     textAlign(LEFT, CENTER);
 
-    text(">1350", textX, y);
+    text("1350", textX, y);
     text("0", textX, y + 300);
 
 }
