@@ -1,6 +1,6 @@
 
 
-float margin = 100; // Margin for labels and spacing
+float margin = 100; // Margin 
 float gridEndXFactor = 0.6; // factor gaande van 0 tot 1 die bepaalt waar het einde van de grid ligt, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
 
 float getGridEndX() { // Float om de X-positie van het einde van de grid te berekenen op basis van een factor van de totale breedte, zodat we flexibel kunnen zijn met de layout.
@@ -38,17 +38,19 @@ void drawHeatmapLabels(int numAges, int numCountries) {
     float y = margin + j * ySpacing + ySpacing / 2;
     textAlign(RIGHT, CENTER);
     text(landenNamen[j], margin - 10, y);
+    // mooi onder elke kolom en naast elke rij de labels plaatsen, hier zit margin in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
   }
 
   textSize(16);
   textAlign(CENTER, CENTER);
   text("Age", (margin + getGridEndX()) / 2, height - 35);
-
+// tekst age staat mooi in het midden onder de grid
   pushMatrix();
   translate(30, height / 2);
   rotate(-PI / 2);
   text("Country", 0, 0);
   popMatrix();
+  // AI suggestie om de de tekst "Country" verticaal te plaatsen door de matrix te transformeren, zodat we de tekst kunnen roteren en op de juiste plek kunnen zetten zonder ingewikkelde berekeningen voor de positie.
 }
 String[] leeftijdsCategorieen = {"<15", "15-19", "20-24", "25-29", "30-39", "40-49", "50+"};
 String[] landenNamen = {
@@ -65,15 +67,15 @@ void drawGrid(int numAges, int numCountries) {
   
   float xSpacing = (getGridEndX() - margin) / (float)numAges; //hier zit getGridEndX() in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
   float ySpacing = (height - 2 * margin) / (float)numCountries;
-  // with of each cell
+  // breedte van de cellen wordt berekend als het verschil tussen het einde van de grid (getGridEndX()) en de margin, gedeeld door het aantal leeftijdscategorieën, zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
   
-  // Draw vertical lines for ages (X-axis)
+  // verticale lijnen tekenen voor leeftijdscategorieën (X-as)
   for (int i = 0; i <= numAges; i++) {
     float x = margin + i * xSpacing;
     line(x, margin, x, height - margin);
   }
   
-  // Draw horizontal lines for countries (Y-axis)
+  // horizontale lijnen tekenen voor landen (Y-as)
   for (int i = 0; i <= numCountries; i++) {
     float y = margin + i * ySpacing;
     line(margin, y, getGridEndX(), y);
