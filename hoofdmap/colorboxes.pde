@@ -1,7 +1,7 @@
 color getColorForValue(float waarde) {
 
   float minWaarde = 0;      //20= absolute waarde, laagste relatieve waarde = 0
-  float maxWaarde = 0.14;    //750=absolute waarde, hoogste relatieve waarde moeten we nog bepalen
+  float maxWaarde = 1350;    //750=absolute waarde, hoogste relatieve waarde moeten we nog bepalen
 
   // waarde omzetten naar schaal tussen 0 en 1
   float inter = map(waarde, minWaarde, maxWaarde, 0, 1);
