@@ -102,4 +102,21 @@ for(int i = 0; i < exelBestand.getRowCount(); i++) {
     }
   }     
 }
+
+for(int i = 0; i < exelBestand.getRowCount(); i++) {
+    float tempTotaal = exelBestand.getFloat(i, "Totaal");
+    float tempInwoners = exelBestand.getFloat(i, "Inwoners"); // Zorg dat deze kolom in je CSV staat
+    
+    for(int j = 0; j < dataPunt.size(); j++) {
+      if (dataPunt.get(j).indexNummer == i) {
+        dataPunt.get(j).waardeTotaal = tempTotaal;
+        dataPunt.get(j).inwoners = tempInwoners;
+        
+        // BEREKENING: Deel door inwoners en herschaal (bijv. per 100.000)
+        if (tempInwoners > 0) {
+          dataPunt.get(j).waardeRelatief = (tempTotaal / tempInwoners) * 100000;
+        }
+       }
+       }
+       } 
 }
