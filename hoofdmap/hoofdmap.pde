@@ -1,6 +1,7 @@
 // Main sketch tab required by Processing: file name must match folder name.
 // Actual setup and data logic live in the other .pde tabs.
 // misschien een idee om hier de void setup en draw te plaatsen en dus de kern van de code hier te laten runnen? ja top
+float maxRelatief = 0; // deze variabele zal worden gebruikt om de maximale waarde van de relatieve waardes op te slaan, zodat we deze kunnen gebruiken in de display functie van de dataPunten class om de kleur van de datapunten aan te passen op basis van hun relatieve waarde, en om landen onderling te vergelijken door te delen door de grootste relatieve waarde die we zijn bekomen
 
 void setup() {
 	size(1250, 750);
@@ -24,6 +25,11 @@ void setup() {
   mean30_39();
   mean40_49();
   mean50_plus();
+  for (dataPunten punt : dataPunt)  {
+    if (punt.waardeRelatief > maxRelatief) {
+      maxRelatief = punt.waardeRelatief;
+      }
+  }
 }
 
 void draw(){

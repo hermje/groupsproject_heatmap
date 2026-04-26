@@ -53,7 +53,8 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   float waardeTotaal;
   float deviatie; // elk dataPunt krtijgt een deviatie die  wordt weergegeven in de informatiebalk 
   float zScore; // elk dataPunt krijgt een Z-score die later weergegeven wordt in de informatiebalk
-  
+  float waardeRelatief; // de berekende waarde per 100.000 inwoners, deze waarde wordt berekend door de waarde van het datapunt te delen door het aantal inwoners van het land, zodat we een standaardisering hebben voor elke leeftijdscategorie en we landen onderling kunnen vergelijken.
+  float inwoners; // totaal aantal inwoners per land
 
  
 
@@ -74,6 +75,8 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     this.waardeTransgender = 0;
     this.waardeTotaal = 0;
     this.zScore = 0;
+    this.waardeRelatief = 0;
+    this.inwoners = 0; 
   }
 
   void dataPuntenAanmaken (){ //functie die de datapunten aanmaak, in dit geval 210 datapunten, 30 landen x 7 leeftijdscategorieen
@@ -86,10 +89,19 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   }
   }
 
-  void display (){ //objecten worden weergegeven als rechthoeken, tijdelijk functie om de datapunten te tonen, later zal deze functie worden aangepast om de kleur van de rechthoek aan te passen op basis van de waarde van het datapunt, en om de naam van het land weer te geven bij hoveren.
+  void display (float maxRelatief){ //objecten worden weergegeven als rechthoeken, tijdelijk functie om de datapunten te tonen, later zal deze functie worden aangepast om de kleur van de rechthoek aan te passen op basis van de waarde van het datapunt, en om de naam van het land weer te geven bij hoveren.
     stroke(0);
     strokeWeight(1);
     fill(255);
+    rect(x + gridSpacerX, y + gridSpacerY, cellWidth, cellHeight);
+
+    float inter = map(this.waardeRelatief, 0, maxRelatief, 0, 1);
+    // kleurverloop van Geel (laag) naar Rood (hoog)
+    color laag = color(255, 255, 0);
+    color hoog = color(255, 0, 0);
+    color c = lerpColor(laag, hoog, inter); 
+
+    fill(c);
     rect(x + gridSpacerX, y + gridSpacerY, cellWidth, cellHeight);
   }
 
