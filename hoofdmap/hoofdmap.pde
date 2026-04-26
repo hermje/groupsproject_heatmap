@@ -37,4 +37,7 @@ void draw(){
   infoBalk (infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight); //functie die informatiebalk weergeeft 
 
   colorscale();
-}
+  getColorForValue(dataPunt.get(float(index)).waardeTotaal); //functie die de kleurcode bepaalt op basis van de waardeTotaal van een datapunt, deze waardeTotaal is de relatieve waarde van het aantal gevallen per leeftijdscategorie per land, dus het aantal gevallen gedeeld door het aantal inwoners van dat land. Deze functie geeft een kleurcode terug die vervolgens gebruikt wordt om de kleur van het vakje te bepalen.
+
+} 
+
