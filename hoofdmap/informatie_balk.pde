@@ -19,7 +19,7 @@ void infoBalk (float infoBalkX, float infoBalkY, float infoBalkWidth, float info
   float inhoudStartY = titelY + titelTekstGrootte + informatieSpacer;
   float regelHoogte = inhoudTekstGrootte + informatieSpacer;
     float huidigeRegelY = inhoudStartY;
-
+    fill(255);
     rect(infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight);
     fill(0);
     textSize(titelTekstGrootte);
