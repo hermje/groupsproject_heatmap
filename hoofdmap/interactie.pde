@@ -25,10 +25,10 @@ void lijnObjectenUitMetGrid() { //AI: functie die objecten en grid automatisch a
   gridSpacerX = gridMargin;
   gridSpacerY = gridMargin;
 
-  for (int i = 0; i < dataPunt.size(); i++) {
+  for (int i = 0; i < dataPunt.size(); i++) { //forloop die alle datapunten afgaat en de x en y positie van elk datapunt aanpast op basis van zijn plaats in de data.csv (rij en kolom)
     dataPunten punt = dataPunt.get(i);
-    int rij = i / (int)aantalKolommen;
-    int kolom = i % (int)aantalKolommen;
+    int rij = i / (int)aantalKolommen; //de rij waarin het datapunt wordt bepaald door de index te delen door het aantal kolommen (want indexering gebeurt primaire per rij)
+    int kolom = i % (int)aantalKolommen; // de overschot van de deling door het aantal kolommen wordt gebruikt om de kolom te bepalen 
 
     punt.x = kolom * gridCellWidth;
     punt.y = rij * gridCellHeight;
@@ -89,7 +89,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   }
   }
 
-  void display (float maxRelatief){ //objecten worden weergegeven als rechthoeken, tijdelijk functie om de datapunten te tonen, later zal deze functie worden aangepast om de kleur van de rechthoek aan te passen op basis van de waarde van het datapunt, en om de naam van het land weer te geven bij hoveren.
+  void display (){ //objecten worden weergegeven als rechthoeken, tijdelijk functie om de datapunten te tonen, later zal deze functie worden aangepast om de kleur van de rechthoek aan te passen op basis van de waarde van het datapunt, en om de naam van het land weer te geven bij hoveren.
     stroke(0);
     strokeWeight(1);
     fill(255);
@@ -102,12 +102,13 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     color c = lerpColor(laag, hoog, inter); 
 
     fill(c);
-    rect(x + gridSpacerX, y + gridSpacerY, cellWidth, cellHeight);
+    rect(x + gridSpacerX, y + gridSpacerY, cellWidth, cellHeight); //deze x en y worden per punt bepaald door de lijnObjectenUitMetGrid functie, deze functie zorgt ervoor dat elk datapunt netjes in het grid past, en dat de layout flexibel is, zodat we makkelijk aanpassingen kunnen maken aan de layout zonder overal in de code aanpassingen te moeten maken.
   }
 
   void select() { //functie die visueel aantoond welke datapunt wordt geselecteerd (tijdelijk), later zal deze functie enkel nog worden gebruikt voor de selected.point = this om de interactieve tabel op te bouwen
     float sx = this.x + gridSpacerX;
     float sy = this.y + gridSpacerY;
+    // floats om de grenzen van het vakje (datapunt) af te bakenen, onderstaande boolean gebruikt deze om te checken of de cursus boven een bepaald vakje staat
     boolean isHover = mouseX >= sx && mouseX < sx + cellWidth && mouseY >= sy && mouseY < sy + cellHeight; //checkt of de muis zich binnen de grenzen van een vakje (datapunt) bevindt, indien dit zo is wordt de variabele isHover true en wordt dat specifieke datapunt geselecteerd (nodig voor informatiebalk)
 
     if (isHover) {

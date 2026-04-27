@@ -24,28 +24,28 @@ void tekenHeatmapUI() {
   
 }
 void drawHeatmapLabels(int numAges, int numCountries) {
-  float xSpacing = (getGridEndX() - margin) / numAges;
-  float ySpacing = (height - 2 * margin) / numCountries;
+  float xSpacing = (getGridEndX() - gridMargin) / numAges;
+  float ySpacing = (height - 2 * gridMargin) / numCountries;
 
   fill(0);
   textSize(12);
   textAlign(CENTER, TOP);
   for (int i = 0; i < numAges; i++) {
-    float x = margin + i * xSpacing + xSpacing / 2;
-    text(leeftijdsCategorieen[i], x, height - margin + 8);
+    float x = gridMargin + i * xSpacing + xSpacing / 2;
+    text(leeftijdsCategorieen[i], x, height - gridMargin + 8);
   }
 
   textSize(10);
   for (int j = 0; j < numCountries; j++) {
-    float y = margin + j * ySpacing + ySpacing / 2;
+    float y = gridMargin + j * ySpacing + ySpacing / 2;
     textAlign(RIGHT, CENTER);
-    text(landenNamen[j], margin - 10, y);
-    // mooi onder elke kolom en naast elke rij de labels plaatsen, hier zit margin in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
+    text(landenNamen[j], gridMargin - 10, y);
+    // mooi onder elke kolom en naast elke rij de labels plaatsen, hier zit gridMargin in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
   }
 
   textSize(16);
   textAlign(CENTER, CENTER);
-  text("Age", (margin + getGridEndX()) / 2, height - 35);
+  text("Age", (gridMargin + getGridEndX()) / 2, height - 35);
 // tekst age staat mooi in het midden onder de grid
   pushMatrix();
   translate(30, height / 2);
