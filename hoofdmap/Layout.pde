@@ -11,13 +11,13 @@ float getGridEndX() { // Float om de X-positie van het einde van de grid te bere
 
 void tekenHeatmapUI() { 
   background(255);
-  drawGrid(7, 30);  // 7 ages on X-axis, 30 countries on Y-axis
+  drawGrid(7, 30);  // 7 ages op X-axis, 30 countries op Y-axis
   fill(0); // Black text
   textSize(20);
   textAlign(CENTER, CENTER);
   text("HIV Prevalence by Age and Country", getGridEndX() / 2, 30); // Title, hier zit getGridEndX() in verwerkt zodat we flexibel kunnen zijn met de layout zonder overal in de code aanpassingen te moeten maken
-  drawHeatmapLabels(7, 30); // Labels for ages and countries
-  stroke(0); // Black border for legend
+  drawHeatmapLabels(7, 30); // Labels voor ages en countries
+  stroke(0); // zwarte rand legende
   noFill();
   strokeWeight(2);
   rect(getGridEndX() + 20, 350, 40, 300); // legend box
@@ -58,10 +58,10 @@ String[] leeftijdsCategorieen = {"<15", "15-19", "20-24", "25-29", "30-39", "40-
 String[] landenNamen = {
   "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus",
   "Czechia", "Denmark", "Estonia", "Finland", "France",
-  "Germany", "Greece", "Hungary", "Ireland", "Italy",
-  "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands",
-  "Poland", "Portugal", "Romania", "Slovakia", "Slovenia",
-  "Spain", "Sweden", "Norway", "Iceland", "Switzerland"
+  "Germany", "Greece", "Hungary", "Iceland", "Ireland",
+  "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg",
+  "Malta", "Netherlands", "Norway", "Poland", "Portugal",
+  "Romania", "Slovakia", "Slovenia", "Spain", "Sweden"
 };
 void drawGrid(int numAges, int numCountries) {
   stroke(0);      // Black lines
