@@ -40,12 +40,15 @@ void draw(){
   lijnObjectenUitMetGrid();
   updateInfoBalkPositie();
 //CLASS FUNCTIES
- for (dataPunten punt : dataPunt) {
-  punt.display(maxRelatief); // Tekent het vakje met de juiste kleur op basis van de max
-  punt.select();             // Regelt de interactie/hover
-  punt.calculateDeviation(); // Berekent nog steeds de afwijking voor de info-balk   
+    for(int r =0; r<aantalRijen; r++) {
+    for(int c=0; c<aantalKolommen;c++) {
+      int index = r * (int)aantalKolommen + c; //CENTRAAL: GAAT ALLE INDEXEN AF!!! 
+      dataPunt.get(index).display(); //tijdelijk om te kijken of de interactie werkt, later zal deze functie weggehaald worden
+      dataPunt.get(index).select(); //Indien het kleuren van de vakjes tijdens het werken aan de code vervelend wordt, kan deze functie tijdelijk worden uitgecommentarieerd
+      dataPunt.get(index).calculateDeviation(); //hier wordt de deviatie berekend voor elk datapunt, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
+      dataPunt.get(index).calculateZScore();
     }
-  
+  }
 
   infoBalk (infoBalkX, infoBalkY, infoBalkWidth, infoBalkHeight); //functie die informatiebalk weergeeft 
 

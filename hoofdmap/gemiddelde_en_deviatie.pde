@@ -119,3 +119,73 @@ float mean50_plus () {
         return 0; //voorkomt dat het systeem vastloopt door te delen door 0 
     }
     } 
+
+float gemiddeldePerCategorie(String leeftijd) {
+  if (leeftijd.equals("<15")) {
+    return meanSub15();
+  } else if (leeftijd.equals("15-19")) {
+    return mean15_19();
+  } else if (leeftijd.equals("20-24")) {
+    return mean20_24();
+  } else if (leeftijd.equals("25-29")) {
+    return mean25_29();
+  } else if (leeftijd.equals("30-39")) {
+    return mean30_39();
+  } else if (leeftijd.equals("40-49")) {
+    return mean40_49();
+  } else if (leeftijd.equals("50+")) {
+    return mean50_plus();
+  } else {
+    return 0;
+  }
+}
+
+float standaarddeviatiePerCategorie(String leeftijd) {
+  float meanValue = gemiddeldePerCategorie(leeftijd);
+
+  float somKwadratischeAfwijkingen = 0;
+  int count = 0;
+
+  for (int i = 0; i < dataPunt.size(); i++) {
+    dataPunten punt = dataPunt.get(i);
+    if (punt.leeftijdsCategorie.equals(leeftijd)) {
+      float afwijking = punt.waardeTotaal - meanValue;
+      somKwadratischeAfwijkingen += afwijking * afwijking;
+      count++;
+    }
+  }
+
+  if (count > 1) {
+    return sqrt(somKwadratischeAfwijkingen / (count - 1)); // sample standaarddeviatie
+  } else {
+    return 0;
+  }
+}
+
+float stdSub15() {
+  return standaarddeviatiePerCategorie("<15");
+}
+
+float std15_19() {
+  return standaarddeviatiePerCategorie("15-19");
+}
+
+float std20_24() {
+  return standaarddeviatiePerCategorie("20-24");
+}
+
+float std25_29() {
+  return standaarddeviatiePerCategorie("25-29");
+}
+
+float std30_39() {
+  return standaarddeviatiePerCategorie("30-39");
+}
+
+float std40_49() {
+  return standaarddeviatiePerCategorie("40-49");
+}
+
+float std50_plus() {
+  return standaarddeviatiePerCategorie("50+");
+}

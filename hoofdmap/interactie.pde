@@ -5,23 +5,21 @@ float aantalKolommen = 7;
 float totaalAantalPunten = aantalRijen * aantalKolommen;
 
 
-float gridMargin = 100;
-float gridCellWidth = (1000 - 2 * gridMargin) / 7.0;
+float gridCellWidth = (1000 - 2 * gridMargin) / 7.0; 
 float gridCellHeight = (1000 - 2 * gridMargin) / 30.0;
 // 1 cel rechts + 1 cel naar beneden vrijhouden voor labels
 float gridSpacerX = gridMargin + gridCellWidth;
 float gridSpacerY = gridMargin + gridCellHeight;
 
 
-dataPunten selectedPoint = null;
+dataPunten selectedPoint = null; //komt uit functie select() in class dataPunten, hierin wordt het geselecteerde datapunt opgeslagen, zodat we deze kunnen gebruiken om de interactieve tabel te tonen in de informatiebalk.
 
 
 
 
 
 
-void lijnObjectenUitMetGrid() { //AI: functie die objecten en grid automatisch alligneerd om verwerking makkelijker te maken 
-  gridMargin = margin;
+void lijnObjectenUitMetGrid() { //AI: functie die objecten en grid automatisch alligneerd om verwerking makkelijker te maken ;
   gridCellWidth = (getGridEndX() - gridMargin) / aantalKolommen;
   gridCellHeight = (height - 2 * gridMargin) / aantalRijen;
   gridSpacerX = gridMargin;
@@ -53,7 +51,8 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   float waardeVrouw;
   float waardeTransgender;
   float waardeTotaal;
-  float deviatie;
+  float deviatie; // elk dataPunt krtijgt een deviatie die  wordt weergegeven in de informatiebalk 
+  float zScore; // elk dataPunt krijgt een Z-score die later weergegeven wordt in de informatiebalk
   float waardeRelatief; // de berekende waarde per 100.000 inwoners, deze waarde wordt berekend door de waarde van het datapunt te delen door het aantal inwoners van het land, zodat we een standaardisering hebben voor elke leeftijdscategorie en we landen onderling kunnen vergelijken.
   float inwoners; // totaal aantal inwoners per land
 
@@ -75,6 +74,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     this.waardeVrouw = 0;
     this.waardeTransgender = 0;
     this.waardeTotaal = 0;
+    this.zScore = 0;
     this.waardeRelatief = 0;
     this.inwoners = 0; 
   }
@@ -83,7 +83,9 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     for(int r=0; r<aantalRijen; r++) {
     for(int c=0; c<aantalKolommen; c++) {
       dataPunt.add(new dataPunten(c*cellWidth, r*cellHeight, cellWidth, cellHeight, r * aantalKolommen + c)); // rij-major: x=kolom, y=rij, index: r*cCount + c
-    }
+    // r * aantalKolommen + c zorgt ervoor dat elk datapunt een uniek indexnummer krijgt, dit stukje code is specifiek gemaakt om ervoor te zorgen dat de indexering primair gebeurd op basis van de rijen (dus index 0-6 voor de eerste rij, 7-13 voor de tweede rij, enzovoort), dit maakt het makkelijker om de datapunten te koppelen aan de juiste landen en leeftijdscategorieen in de dataKoppelenAanObjecten functie, aangezien deze ook primair op basis van rijen werkt.
+    // keuze gemaakt op basis van data in data.csv: data in deze file is zo gestructureerd dat elke lijn overeenkomt met een specifieke leeftijdscategorie en de verschillende waarden van één land (man, vrouw, totaal)
+  }
   }
   }
 
@@ -106,7 +108,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   void select() { //functie die visueel aantoond welke datapunt wordt geselecteerd (tijdelijk), later zal deze functie enkel nog worden gebruikt voor de selected.point = this om de interactieve tabel op te bouwen
     float sx = this.x + gridSpacerX;
     float sy = this.y + gridSpacerY;
-    boolean isHover = mouseX >= sx && mouseX < sx + cellWidth && mouseY >= sy && mouseY < sy + cellHeight;
+    boolean isHover = mouseX >= sx && mouseX < sx + cellWidth && mouseY >= sy && mouseY < sy + cellHeight; //checkt of de muis zich binnen de grenzen van een vakje (datapunt) bevindt, indien dit zo is wordt de variabele isHover true en wordt dat specifieke datapunt geselecteerd (nodig voor informatiebalk)
 
     if (isHover) {
       selectedPoint = this; //voornaamste voordeel van deze functie, hiermee wordt het geselecteerde datapunt opgeslagen in de variabele selectedPoint, zodat we deze kunnen gebruiken om de interactieve tabel te tonen.
@@ -120,7 +122,7 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
   void calculateDeviation() {
     float meanValue = 0;
 
-    //onderstaande lijnen code checken in welke leeftijdscategorie het datapunt valt, en vervolgens het gemiddelde voor die leeftijdscategorie oproepen, zodat we de deviatie kunnen berekenen als het verschil tussen de waarde van het datapunt en het gemiddelde voor die leeftijdscategorie, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
+    //onderstaande lijnen code checken in welke leeftijdscategorie het datapunt valt, en vervolgens het gemiddelde voor die leeftijdscategorie oproepen, zodat we de deviatie kunnen berekenen als het verschil tussen de waarde van het datapunt en het gemiddelde voor die leeftijdscategorie.
     if (leeftijdsCategorie.equals("15-19")) {
       meanValue = mean15_19(); 
     } else if (leeftijdsCategorie.equals("20-24")) {
@@ -139,5 +141,14 @@ class dataPunten { //Gekozen om met classes te werken omdat we dan alle eigensch
     
     this.deviatie = waardeTotaal - meanValue; //hier wordt de deviatie berekend als het verschil tussen de waarde van het datapunt en het gemiddelde voor die leeftijdscategorie, deze deviatie kan vervolgens worden gebruikt om de kleur van het datapunt aan te passen in de display functie, zodat we visueel kunnen zien welke datapunten afwijken van het gemiddelde.
   }
-}
 
+  void calculateZScore() {
+    float stdValue = standaarddeviatiePerCategorie(leeftijdsCategorie); //Gebruikt de functie standaardDeviatiePerCategorie vanuit gemiddelde_en_deviatie, aangezien dit een functie is binnen de class dataPunten zal de (leeftijdCategorie) parameter van de originele functie automatisch worden ingevuld met de specifieke leeftijdscategorie van dat datapunt
+
+    if (stdValue > 0) {
+      this.zScore = deviatie / stdValue;
+    } else {
+      this.zScore = 0;
+    }
+  }
+}
