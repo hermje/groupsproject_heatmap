@@ -1,27 +1,27 @@
-Table exelBestand;           
+Table exelBestand;   // hier wordt CSV bestand opgeslagen als een tabel        
 int aantalLanden;           
 float[][] dataMatrix;    // de eerste [] staat voor de Rij (land) en de tweede [] voor de kolom (Man, Vrouw, trans of Totaal)
 
 
 void laadData() {
 
-  exelBestand = loadTable("data.csv", "header"); // dit is om de csv tabel(exel) in te laden, en met header wordt bedoeld dat de eerste regel niet mee moet worden gebruikt in de berekeningen, maar die moet worden gebruik voor de titels 
+  exelBestand = loadTable("data.csv", "header"); // dit is om de exel tabel(csv) in te laden, en met header wordt bedoeld dat de eerste rij kolomnamen bevat
 
   
   aantalLanden = exelBestand.getRowCount() / 7; // hiermee wordt geteld hoeveel rijen in het CSV bestan staan, dus hoeveel landen er zijn.
 
   
-  dataMatrix = new float[aantalLanden][4];  // Nu wordt de matrix/rooster dat het aantal landen gebruikt voor de hoogte en 4 kolommen voor de breedte(Man, Vrouw, Trans, Totaal) 
+  dataMatrix = new float[aantalLanden][4];  // aantalLanden = aantal rijen en 4 = aantal kolommen ==> om te zeggen hoe groot de tabel moet zijn
 
   
 
   
   for (int i = 0; i < aantalLanden; i++) { // een loop, om alle landen af te lopen
     
-    int csvIndex = i * 7;
-    TableRow rij = exelBestand.getRow(csvIndex); // i is de rij die pakt uit het CSV bestand, dus het land dat wordt ingeladen.
+    int csvIndex = i * 7; // elk land heeft 7 rijen in het CSV bestand, dus om bij het juiste land te komen, moet je de index van het land vermenigvuldigen met 7, zodat je bij de eerste rij van dat land komt in het CSV bestand. Bijvoorbeeld, voor het eerste land (index 0) is de csvIndex 0, voor het tweede land (index 1) is de csvIndex 7, voor het derde land (index 2) is de csvIndex 14, ....
+    TableRow rij = exelBestand.getRow(csvIndex); // pak de rij op op positie csvIndex en sla dat land op in rij
 
-    // je gaat nu de data van de rij in de matrix zetten, dus per land 
+    //  i = welke rij(land) en j = welke kolom
     dataMatrix[i][0] = rij.getFloat("Man");    // Kolom Man
     dataMatrix[i][1] = rij.getFloat("Vrouw");  // Kolom Vrouw
     dataMatrix[i][2] = rij.getFloat("Transgender"); // kolom totaal transgender
@@ -44,8 +44,8 @@ void dataKoppelenAanObjecten (){
 
 //OEFENCODE, LANDEN KOPPELEN AAN OBJECTEN 
 //LANDNAAM 
-for(int i = 0; i < exelBestand.getRowCount(); i++) {
-  String tempLandnaam = exelBestand.getString(i, "Land"); //hier wordt de naam van het land opgehaald uit het CSV bestand, op basis van de rij index i, en de kolom "Land", deze waarde wordt opgeslagen in de variabele tempLandnaam
+for(int i = 0; i < exelBestand.getRowCount(); i++) { // alle rijen van het ccsv bestand aflopen
+  String tempLandnaam = exelBestand.getString(i, "Land"); // neem rij i, neem kolom 'land' en sla die op als templandnaam
 for(int j = 0; j < dataPunt.size(); j++) {
   if (dataPunt.get(j).indexNummer == i) { //hier wordt gecontroleerd of de index van het dataPunten object overeenkomt met de rij index i van het CSV bestand, als dit het geval is, dan wordt de naam van het land gekoppeld aan het dataPunten object, zodat we deze later kunnen gebruiken in de display en select functies van de dataPunten class, en in de informatiebalk.
     dataPunt.get(j).landNaam = tempLandnaam; //hier wordt de naam van het land gekoppeld aan het dataPunten object, door de waarde van tempLandnaam toe te wijzen aan de landNaam eigenschap van het dataPunten object op index j.
