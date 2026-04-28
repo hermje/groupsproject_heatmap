@@ -18,7 +18,7 @@ void colorscale(){
     rect(x, y, w, h);
 
     for(int i=0; i< 300; i++){
-      float inter = map(i,0,300,0,1);
+      float inter = map(i,0,300,0,1); // de balk is 300 pixels hoog en tekent op elke pixelhoogte i een horizontale lijn, map(waarde, minOud, maxOud, minNieuw, maxNieuw)
       color c = lerpColor(color(255,0,0),color(255,255,0),inter); //lerp zorgt voor kleurenovergang
       stroke(c);
       line(x,y+i,x+w,y+i); //lijn per lijn wordt de kader ingekleurd
