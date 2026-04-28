@@ -16,21 +16,7 @@ void laadData() {
   
 
   
-  for (int i = 0; i < aantalLanden; i++) { // een loop, om alle landen af te lopen
-    
-    int csvIndex = i * 7; // elk land heeft 7 rijen in het CSV bestand, dus om bij het juiste land te komen, moet je de index van het land vermenigvuldigen met 7, zodat je bij de eerste rij van dat land komt in het CSV bestand. Bijvoorbeeld, voor het eerste land (index 0) is de csvIndex 0, voor het tweede land (index 1) is de csvIndex 7, voor het derde land (index 2) is de csvIndex 14, ....
-    TableRow rij = exelBestand.getRow(csvIndex); // pak de rij op op positie csvIndex en sla dat land op in rij
 
-    //  i = welke rij(land) en j = welke kolom
-    dataMatrix[i][0] = rij.getFloat("Man");    // Kolom Man
-    dataMatrix[i][1] = rij.getFloat("Vrouw");  // Kolom Vrouw
-    dataMatrix[i][2] = rij.getFloat("Transgender"); // kolom totaal transgender
-    dataMatrix[i][3] = rij.getFloat("Totaal"); // Kolom Totaal
-    
-
-    //
-
-  }
 }
 
 void dataKoppelenAanObjecten (){
