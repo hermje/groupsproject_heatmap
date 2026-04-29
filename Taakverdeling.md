@@ -8,6 +8,9 @@ De data is nodig voor de volgende taken:
 
 Layout: Amber 
 De layout is nodig om de objecten (dataPunten) op hun juiste plaats te zetten 
+- de grid tekenen + legende box
+- de labels toevogen
+- de assen benoemen 
 
 
 Interactie: Jens (volledig functioneel sinds 28/04/2026)
