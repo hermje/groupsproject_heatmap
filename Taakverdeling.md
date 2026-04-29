@@ -20,6 +20,7 @@ Uitgevoerde taken:
 - koppeling class en data
 - selecteren dataPunten 
 - eigenschappen van dit dataPunt presenteren in informatiebalk 
+- bepaling gemiddelde, deviatie en Z-score per categorie/dataPunt
 
 
 Kleurschaling: Anouk 
